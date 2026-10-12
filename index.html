@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Value of Being Wrong: Self-Mined Visual In-Context Learning from Errors</title>
+  <meta name="description" content="SMILE (NeurIPS 2026 Spotlight) turns a vision-language model's own past mistakes into in-context demonstrations.">
+  <meta name="keywords" content="SMILE, visual in-context learning, vision-language models, hard negatives, counterfactual demonstrations, NeurIPS 2026">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Value of Being Wrong: Self-Mined Visual In-Context Learning from Errors">
+  <meta property="og:description" content="SMILE (NeurIPS 2026 Spotlight) turns a vision-language model's own past mistakes into in-context demonstrations.">
+  <meta property="og:url" content="https://tree-shu-zhao.github.io/SMILE/">
+  <meta property="og:image" content="https://tree-shu-zhao.github.io/SMILE/static/images/og_card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Value of Being Wrong: Self-Mined Visual In-Context Learning from Errors">
+  <meta name="twitter:description" content="SMILE (NeurIPS 2026 Spotlight) turns a vision-language model's own past mistakes into in-context demonstrations.">
+  <meta name="twitter:image" content="https://tree-shu-zhao.github.io/SMILE/static/images/og_card.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙂</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;600;700&amp;family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/smile.css">
+</head>
+<body>
+<!-- Icons: Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0) -->
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="title-line">The Value of Being Wrong:</span> <span class="title-line"><span class="nowrap">Self-Mined</span> Visual <span class="nowrap">In-Context</span> Learning from Errors</span></h1>
+          <div class="venue">NeurIPS 2026 <span class="venue-tag">Spotlight</span></div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://shuzhao.me/" target="_blank">Shu Zhao</a>,</span>
+            <span class="author-block">Tan Yu</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">NVIDIA</span>
+          </div>
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="https://github.com/Tree-Shu-Zhao/SMILE" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><svg class="icon-svg" aria-hidden="true" focusable="false" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                <span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://huggingface.co/datasets/TreezzZ/SMILE-data" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">🤗</span>
+                <span>Data</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><svg class="icon-svg" aria-hidden="true" focusable="false" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z"/></svg></span>
+                <span>BibTeX</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <a href="static/images/teaser.jpg" target="_blank"><img src="static/images/teaser.jpg" alt="A hard negative from the mined pool shows the VLM which region to use: the distractor that caused its past mistake is marked, and the model answers from the target region." class="figure-img"></a>
+      <p class="figure-caption"><b>A VLM's own past mistakes can steer attention away from visual distractors and onto the target region.</b> SMILE retrieves a hard negative with the same error pattern from the mined pool, making the distractor evidence explicit and steering the VLM toward the correct visual region.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Visual in-context learning (ICL) enables vision-language models (VLMs) to adapt at test time via demonstration examples, but its effectiveness depends critically on the examples selected. Recent counterfactual selection methods improve ICL by constructing demonstrations that expose how individual attribute changes affect the answer. However, they require multi-stage pipelines involving attribute extraction, caption engineering, and composed image matching. We propose a simpler alternative grounded in a key observation: <em>a model's own prediction errors are natural counterfactual demonstrations that directly encode its failure modes.</em> Our method, <b>SMILE</b> (<b>S</b>elf-<b>M</b>ined Visual <b>I</b>n-Context <b>L</b>earning from <b>E</b>rrors), builds a model-specific pool of hard negatives offline by recording the target VLM's own mistakes. At test time, the prediction serves as a direction signal that surfaces, in the semantic embedding space, the past mistakes most likely to recur for the current query. This prediction-conditioned identification provides a unified mechanism for both closed-set classification and open-ended visual question answering without task-specific design. Across four benchmarks and four VLMs, SMILE delivers an average task-score gain of +3.09 points over the SOTA baseline at 5&times; lower latency.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method</h2>
+    <a href="static/images/method.jpg" target="_blank"><img src="static/images/method.jpg" alt="SMILE pipeline. Offline: the VLM answers each labeled example several times, and examples whose majority vote is wrong enter the hard-negative corpus. Online: image similarity retrieves positive demonstrations, and the query's zero-shot prediction retrieves hard negatives with similar mistaken predictions." class="figure-img"></a>
+    <p class="figure-caption"><b>SMILE mines failures offline and reuses them online as counterfactual demonstrations.</b> Left: the target VLM is run on the labeled corpus; examples whose voted prediction disagrees with the ground truth are stored with both the gold answer and the mistaken answer. Right: for a new query, image similarity retrieves positive demonstrations, while the query's zero-shot prediction is matched in text-embedding space to stored mistaken predictions; the resulting hard negatives are appended to the context before final inference.</p>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <p class="figure-caption caption-above"><b>Main comparison with both primary metric and F1 reported per dataset.</b> The <span class="legend best">best</span> and <span class="legend second">second best</span> scores per model and metric are highlighted.</p>
+    <div class="table-container">
+<table class="table results">
+<thead>
+<tr><th rowspan="2" scope="col">Model</th><th rowspan="2" scope="col">Method</th><th colspan="2" scope="colgroup">CUB</th><th colspan="2" scope="colgroup">Flowers</th><th colspan="2" scope="colgroup">OK-VQA</th><th colspan="2" scope="colgroup">VizWiz</th><th colspan="2" scope="colgroup">Average</th></tr>
+<tr><th scope="col">Acc</th><th scope="col">F1</th><th scope="col">Acc</th><th scope="col">F1</th><th scope="col">EM</th><th scope="col">F1</th><th scope="col">EM</th><th scope="col">F1</th><th scope="col">Score</th><th scope="col">F1</th></tr>
+</thead>
+<tbody>
+<tr><td class="model" rowspan="7">Gemma3-4B</td><td class="method">None</td><td>10.56</td><td>8.19</td><td>46.76</td><td>46.50</td><td>19.12</td><td>26.70</td><td>39.85</td><td>57.26</td><td>29.07</td><td>34.66</td></tr>
+<tr><td class="method">Random</td><td>9.98</td><td>8.10</td><td>37.01</td><td>39.51</td><td>24.81</td><td>30.74</td><td>51.84</td><td>67.08</td><td>30.91</td><td>36.36</td></tr>
+<tr><td class="method">RICES</td><td>65.40</td><td>67.62</td><td>86.70</td><td>87.43</td><td>26.65</td><td>32.72</td><td>56.08</td><td>70.40</td><td>58.71</td><td>64.54</td></tr>
+<tr><td class="method">MUIER</td><td>65.21</td><td>67.42</td><td>86.39</td><td>87.28</td><td>26.87</td><td>32.82</td><td>56.59</td><td>70.75</td><td>58.77</td><td>64.57</td></tr>
+<tr><td class="method">MMICES</td><td>13.95</td><td>10.98</td><td>38.09</td><td>38.20</td><td>26.24</td><td>32.41</td><td>52.72</td><td>68.21</td><td>32.75</td><td>37.45</td></tr>
+<tr><td class="method">CIRCLES</td><td class="second">71.97</td><td class="second">72.39</td><td class="second">93.32</td><td class="second">93.49</td><td class="second">31.27</td><td class="second">36.89</td><td class="second">57.61</td><td class="second">71.35</td><td class="second">63.54</td><td class="second">68.53</td></tr>
+<tr class="ours"><td class="method">SMILE (ours)</td><td class="best">72.22</td><td class="best">72.75</td><td class="best">96.89</td><td class="best">96.88</td><td class="best">35.01</td><td class="best">39.94</td><td class="best">69.69</td><td class="best">76.20</td><td class="best">68.45</td><td class="best">71.44</td></tr>
+</tbody>
+<tbody>
+<tr><td class="model" rowspan="7">Gemma3-12B</td><td class="method">None</td><td>30.34</td><td>25.02</td><td>67.51</td><td>64.33</td><td>25.47</td><td>33.89</td><td>56.82</td><td>71.26</td><td>45.04</td><td>48.62</td></tr>
+<tr><td class="method">Random</td><td>29.27</td><td>25.82</td><td>71.28</td><td>71.56</td><td>33.59</td><td>39.56</td><td>70.13</td><td>80.54</td><td>51.07</td><td>54.37</td></tr>
+<tr><td class="method">RICES</td><td>76.37</td><td>76.25</td><td>96.44</td><td>96.29</td><td>36.86</td><td>42.61</td><td>73.98</td><td class="second">83.43</td><td>70.91</td><td>74.65</td></tr>
+<tr><td class="method">MUIER</td><td>76.51</td><td>76.39</td><td>96.42</td><td>96.28</td><td>36.58</td><td>42.30</td><td>73.72</td><td>83.04</td><td>70.81</td><td>74.50</td></tr>
+<tr><td class="method">MMICES</td><td>36.37</td><td>31.61</td><td>71.36</td><td>69.13</td><td>35.12</td><td>40.85</td><td>71.50</td><td>81.56</td><td>53.59</td><td>55.79</td></tr>
+<tr><td class="method">CIRCLES</td><td class="best">77.03</td><td class="best">76.90</td><td class="second">97.77</td><td class="second">97.75</td><td class="second">37.75</td><td class="second">43.23</td><td class="second">74.30</td><td>82.35</td><td class="second">71.71</td><td class="second">75.06</td></tr>
+<tr class="ours"><td class="method">SMILE (ours)</td><td class="second">76.98</td><td class="second">76.89</td><td class="best">98.85</td><td class="best">98.86</td><td class="best">43.67</td><td class="best">48.29</td><td class="best">78.58</td><td class="best">84.40</td><td class="best">74.52</td><td class="best">77.11</td></tr>
+</tbody>
+<tbody>
+<tr><td class="model" rowspan="7">Qwen2.5-VL-3B</td><td class="method">None</td><td>7.09</td><td>5.97</td><td>22.57</td><td>24.04</td><td>42.29</td><td>46.12</td><td class="second">75.83</td><td class="second">78.58</td><td>36.95</td><td>38.68</td></tr>
+<tr><td class="method">Random</td><td>15.81</td><td>15.63</td><td>41.76</td><td>44.57</td><td>41.54</td><td>45.30</td><td>74.48</td><td>77.40</td><td>43.40</td><td>45.73</td></tr>
+<tr><td class="method">RICES</td><td>72.26</td><td>73.88</td><td>93.06</td><td>92.84</td><td>42.57</td><td>46.26</td><td>70.80</td><td>73.37</td><td>69.67</td><td>71.59</td></tr>
+<tr><td class="method">MUIER</td><td>72.25</td><td>73.87</td><td>93.06</td><td>92.83</td><td>41.66</td><td>45.82</td><td>71.61</td><td>74.74</td><td>69.64</td><td>71.81</td></tr>
+<tr><td class="method">MMICES</td><td>17.26</td><td>15.38</td><td>33.84</td><td>35.47</td><td>39.32</td><td>42.95</td><td>73.23</td><td>76.21</td><td>40.91</td><td>42.50</td></tr>
+<tr><td class="method">CIRCLES</td><td class="second">74.89</td><td class="second">76.34</td><td class="second">94.70</td><td class="second">94.77</td><td class="second">43.24</td><td class="second">47.27</td><td>72.93</td><td>75.33</td><td class="second">71.44</td><td class="second">73.43</td></tr>
+<tr class="ours"><td class="method">SMILE (ours)</td><td class="best">76.75</td><td class="best">77.75</td><td class="best">94.79</td><td class="best">95.25</td><td class="best">43.75</td><td class="best">47.53</td><td class="best">78.26</td><td class="best">82.72</td><td class="best">73.39</td><td class="best">75.81</td></tr>
+</tbody>
+<tbody>
+<tr><td class="model" rowspan="7">Qwen2.5-VL-7B</td><td class="method">None</td><td>14.83</td><td>11.79</td><td>43.47</td><td>42.14</td><td>33.31</td><td>38.33</td><td>68.70</td><td>73.30</td><td>40.08</td><td>41.39</td></tr>
+<tr><td class="method">Random</td><td>26.27</td><td>24.42</td><td>47.15</td><td>49.74</td><td>41.66</td><td>46.20</td><td>76.11</td><td>78.34</td><td>47.80</td><td>49.67</td></tr>
+<tr><td class="method">RICES</td><td>82.15</td><td>81.91</td><td>98.83</td><td>98.85</td><td>43.66</td><td>48.32</td><td>73.79</td><td>76.13</td><td>74.61</td><td>76.30</td></tr>
+<tr><td class="method">MUIER</td><td>82.14</td><td>81.90</td><td>98.93</td><td>98.95</td><td class="second">44.29</td><td class="second">48.76</td><td>74.67</td><td>77.08</td><td>75.01</td><td>76.67</td></tr>
+<tr><td class="method">MMICES</td><td>34.57</td><td>29.72</td><td>49.15</td><td>47.62</td><td>43.40</td><td>47.66</td><td>70.69</td><td>72.77</td><td>49.45</td><td>49.44</td></tr>
+<tr><td class="method">CIRCLES</td><td class="second">82.17</td><td class="second">82.13</td><td class="second">98.99</td><td class="second">99.04</td><td>43.54</td><td>48.53</td><td class="second">77.63</td><td class="second">82.36</td><td class="second">75.58</td><td class="second">78.02</td></tr>
+<tr class="ours"><td class="method">SMILE (ours)</td><td class="best">82.55</td><td class="best">82.30</td><td class="best">99.33</td><td class="best">99.37</td><td class="best">47.80</td><td class="best">51.61</td><td class="best">83.42</td><td class="best">87.49</td><td class="best">78.28</td><td class="best">80.19</td></tr>
+</tbody>
+</table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Efficiency</h2>
+    <a href="static/images/latency_bars_h200.png" target="_blank"><img src="static/images/latency_bars_h200.png" alt="Per-query inference latency of CIRCLES and SMILE for four VLMs on H100 and H200 GPUs." class="figure-img"></a>
+    <p class="figure-caption"><b>Per-query inference latency</b> across four VLMs. SMILE is 3.6&ndash;6.0&times; faster than CIRCLES on H100 (top) and 4.2&ndash;6.0&times; faster on H200 (bottom).</p>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Visualization</h2>
+    <a href="static/images/visualization.jpg" target="_blank"><img src="static/images/visualization.jpg" alt="Attention maps over the query image without and with the hard-negative block, for a bird-species question and a tree question; with hard negatives the attention moves to the discriminating region and the prediction becomes correct." class="figure-img"></a>
+    <p class="figure-caption"><b>Hard negatives concentrate attention on the discriminating region and flip the prediction.</b> Attention from the final prompt token to query-image patches, with vs. without the prediction-conditioned hard-negative block.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Code and Data</h2>
+    <div class="columns">
+      <div class="column">
+        <a class="box resource" href="https://github.com/Tree-Shu-Zhao/SMILE" target="_blank">
+          <p class="resource-title"><span class="icon"><svg class="icon-svg" aria-hidden="true" focusable="false" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> Code</p>
+          <p>The SMILE implementation, with one run script per dataset and model on a vLLM server.</p>
+        </a>
+      </div>
+      <div class="column">
+        <a class="box resource" href="https://huggingface.co/datasets/TreezzZ/SMILE-data" target="_blank">
+          <p class="resource-title"><span class="icon">🤗</span> Data</p>
+          <p>The CLIP embeddings, the hard-negative pools mined for the four VLMs, and our predictions.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+    <pre><code>@inproceedings{zhao2026smile,
+  title={The Value of Being Wrong: Self-Mined Visual In-Context Learning from Errors},
+  author={Zhao, Shu and Yu, Tan},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
