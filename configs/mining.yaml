@@ -1,0 +1,18 @@
+defaults:
+  - override hydra/job_logging: none
+  - override hydra/hydra_logging: none
+  - _self_
+
+model: Qwen/Qwen2.5-VL-7B-Instruct
+api_base: http://localhost:8000/v1
+data: cub
+num_votes: 3
+sample_retries: 3  # retry rounds for failed samples; mining aborts if any still fail
+max_concurrent: 64
+tqdm: false
+save_root: null  # pool path (.jsonl); default hard_negatives/<data>/<org_model>/hard_negatives.jsonl
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

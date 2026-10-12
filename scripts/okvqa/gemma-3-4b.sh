@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# OK-VQA with google/gemma-3-4b-it. Run from the repository root while the CLIP
+# server and the VLM server (serving this model) are up. Extra Hydra overrides are passed through.
+set -euo pipefail
+
+uv run src/run_batch_inference.py \
+  data=okvqa \
+  model=google/gemma-3-4b-it \
+  k=12 \
+  negative_k=8 \
+  num_runs=1 \
+  "$@"

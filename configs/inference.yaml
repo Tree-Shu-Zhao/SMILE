@@ -1,0 +1,28 @@
+defaults:
+  - override hydra/job_logging: none
+  - override hydra/hydra_logging: none
+  - _self_
+
+model: Qwen/Qwen2.5-VL-7B-Instruct
+api_base: http://localhost:8000/v1
+clip_api_base: http://localhost:8001
+data: cub
+k: 8           # CUB default; override per dataset (see README)
+negative_k: 4  # CUB default; override per dataset (see README)
+hard_negatives_path: auto  # auto = hard_negatives/<data>/<org_model>/hard_negatives.jsonl, or a path
+sample_ratio: 1.0
+sample_seed: 42
+temperature: 0.0   # decoding of the zero-shot and the final call
+max_tokens: 512
+max_images_per_prompt: 36  # vLLM --limit-mm-per-prompt (scripts/start_vlm_server.sh); k + negative_k + 1 must fit
+save_root: outputs
+save_path: null
+max_concurrent: 64
+sample_retries: 3   # retry rounds for failed samples; still-failing ones are scored as wrong
+num_runs: 3
+tqdm: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
