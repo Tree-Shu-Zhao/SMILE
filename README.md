@@ -1,5 +1,6 @@
 # The Value of Being Wrong: Self-Mined Visual In-Context Learning from Errors
 
+[![arXiv](https://img.shields.io/badge/arXiv-2610.16977-b31b1b.svg)](https://arxiv.org/abs/2610.16977)
 [![Python](https://img.shields.io/badge/Python-3.12+-green.svg)](https://www.python.org/)
 [![vLLM](https://img.shields.io/badge/vLLM-0.17.1-blue.svg)](https://github.com/vllm-project/vllm)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-SMILE--data-yellow.svg)](https://huggingface.co/datasets/TreezzZ/SMILE-data)
@@ -135,10 +136,13 @@ SMILE/
 If you find our paper useful, please cite it:
 
 ```bibtex
-@inproceedings{zhao2026smile,
+@misc{zhao2026smile,
   title={The Value of Being Wrong: Self-Mined Visual In-Context Learning from Errors},
-  author={Zhao, Shu and Yu, Tan},
-  booktitle={Advances in Neural Information Processing Systems},
-  year={2026}
+  author={Shu Zhao and Tan Yu},
+  year={2026},
+  eprint={2610.16977},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2610.16977},
 }
 ```
