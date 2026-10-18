@@ -136,13 +136,10 @@ SMILE/
 If you find our paper useful, please cite it:
 
 ```bibtex
-@misc{zhao2026smile,
+@article{zhao2026value,
   title={The Value of Being Wrong: Self-Mined Visual In-Context Learning from Errors},
-  author={Shu Zhao and Tan Yu},
-  year={2026},
-  eprint={2610.16977},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV},
-  url={https://arxiv.org/abs/2610.16977},
+  author={Zhao, Shu and Yu, Tan},
+  journal={arXiv preprint arXiv:2610.16977},
+  year={2026}
 }
 ```
